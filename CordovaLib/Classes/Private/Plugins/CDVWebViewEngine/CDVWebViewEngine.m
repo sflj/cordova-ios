@@ -280,6 +280,7 @@
 
 - (id)loadRequest:(NSURLRequest*)request
 {
+    NSLog(@"STAYFREE_LOAD: Start loading request: %s", [request.URL.absoluteString UTF8String]);
     if ([self canLoadRequest:request]) { // can load, differentiate between file urls and other schemes
         if(request.URL.fileURL && self.cdvIsFileScheme) {
             NSURL* readAccessUrl = [request.URL URLByDeletingLastPathComponent];
