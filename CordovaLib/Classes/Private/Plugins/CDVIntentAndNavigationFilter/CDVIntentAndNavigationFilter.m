@@ -158,6 +158,7 @@
 - (BOOL)shouldOverrideLoadWithRequest:(NSURLRequest*)request navigationType:(CDVWebViewNavigationType)navigationType
 {
     NSLog(@"STAYFREE_DEBUG: Ionic Workaround Method Called! URL: %@", request.URL.absoluteString);
+    NSLog(@"STAYFREE_DEBUG: URL is: %s", [request.URL.absoluteString UTF8String]);
     NSLog(@"Plugin called shouldOverrideLoadWithRequest:navigationType: which is deprecated and will be removed in Cordova iOS 9");
 
     return [[self class] shouldOverrideLoadWithRequest:request navigationType:navigationType filterValue:[self filterUrl:request.URL]];
