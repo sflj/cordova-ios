@@ -498,6 +498,7 @@
 
 - (void)webView:(WKWebView*)webView didStartProvisionalNavigation:(WKNavigation*)navigation
 {
+    NSLog(@"STAYFREE_START: Navigation started to: %s", [webView.URL.absoluteString UTF8String]);
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginResetNotification object:webView]];
 }
 
@@ -508,6 +509,7 @@
 
 - (void)webView:(WKWebView*)theWebView didFailProvisionalNavigation:(WKNavigation*)navigation withError:(NSError*)error
 {
+    NSLog(@"STAYFREE_ERROR_PROV: Code: %ld, Desc: %s", (long)error.code, [error.localizedDescription UTF8String]);
     [self webView:theWebView didFailNavigation:navigation withError:error];
 }
 
@@ -515,6 +517,7 @@
 {
     NSString* message = [NSString stringWithFormat:@"Failed to load webpage with error: %@", [error localizedDescription]];
     NSLog(@"%@", message);
+    NSLog(@"STAYFREE_ERROR_NAV: Code: %ld, Desc: %s", (long)error.code, [error.localizedDescription UTF8String]);
 
     if (error.code != NSURLErrorCancelled) {
         NSURL* errorUrl = self.viewController.errorURL;
